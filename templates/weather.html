@@ -1,0 +1,36 @@
+<!-- templates/index.html -->
+{% extends "base.html" %} 
+{% block title %}weather{% endblock title %} 
+
+{% block navigation %} 
+    {{ super() }} 
+{% endblock navigation %} 
+
+{% block content %}
+<a href="/info?UID={{ UID }}"><p>回活動頁面</p></a>
+<div class="grid-item item3"><h2>未來一週的當地天氣</h2></div>
+{% if weather_info %}
+<table class="grid-item item6">
+    <thead>
+        <tr>
+            <th>from</th>
+            <th>to</th>
+            <th>溫度</th>
+            <th>降雨機率</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for weather in weather_info %}
+        <tr>
+            <td>{{ weather['start'] }}</td>
+            <td>{{ weather['end'] }}</td>
+            <td>{{ weather['T'] }}</td>
+            <td>{{ weather['rain'] }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<p>沒有資料</p>
+{% endif %}
+{% endblock content %}

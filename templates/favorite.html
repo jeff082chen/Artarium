@@ -1,0 +1,25 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+{% block title %}favorite{% endblock title %}
+
+{% block navigation %}
+    {{ super() }}
+{% endblock navigation %}
+
+{% block content %}
+<!-- unordered list -->
+<div class="grid-container">
+    <div class="grid-item item1">
+        <ul>
+            {% if not shows %}
+                <li>No shows in your favorite list</li>
+            {% else %}
+                {% for show in shows %}
+                    <li>
+                        <a href="/info?UID={{ show['UID'] }}">{{ show['title'] }}</a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+</div>
+{% endblock content %}

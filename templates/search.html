@@ -1,0 +1,26 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+{% block title %}Search{% endblock title %}
+
+{% block navigation %}
+    {{ super() }}
+{% endblock navigation %}
+
+{% block content %}
+<!-- a list of search results -->
+<div class="grid-container">
+    <div class="grid-item item1">
+        <ul>
+            {% if not search %}
+                <li>No shows found</li>
+            {% else %}
+                {% for show in search %}
+                    <li>
+                        <a href="/info?UID={{ show['UID'] }}">{{ show['title'] }}</a>
+                    </li>
+                {% endfor %}
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,11 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+{% block title %}Lucky{% endblock title %}
+
+{% block navigation %}
+    {{ super() }}
+{% endblock navigation %}
+
+{% block content %}
+<a href="/info?UID={{ lucky[0] }}"><img src="{{ lucky[1] }}", width="600"></a>
+{% endblock content %}

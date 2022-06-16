@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>留言板</title>
+    <style>
+
+.title_button{
+  display:inline-block;
+  /* padding-bottom: 40px; */
+  font-size:20px;
+  display: flex;
+  align-items: flex-start;
+	}
+	#home {
+	  width: 100px;
+	  height: 60px;
+ 	 margin-left: 1000px;
+ 	 margin-right: 10px;
+	}
+	#popular {
+	  width: 100px;
+ 	 height: 60px;
+ 	 margin-right: 10px;
+	}
+	#like {
+ 	 width: 100px;
+ 	 height: 60px;
+ 	 margin-right: 10px;
+	}
+	#login {
+  	width: 100px;
+  	height: 60px;
+	}
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 100px;
+        }
+
+        textarea {
+            width: 300px;
+            height: 150px;
+            border: 1px solid pink;
+            outline: none;
+            resize: none;
+        }
+
+        ul {
+            margin-top: 50px;
+        }
+
+        li {
+            width: 300px;
+            padding: 5px;
+            background-color:#C4E1FF;
+            color: black;
+            font-size: 14px;
+            margin: 15px 0;
+        }
+
+        li a {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+<div class = "title_button">
+      <div>  
+        <button id = "home" onclick="location.href='index.html'"><img src="">home</button>
+      </div>
+      <div>
+        <button id = "popular" onclick="location.href='popular.html'"><img src="">P</button>
+      </div> 
+      <div>
+        <button id = "like" onclick="location.href='like.html'"><img src="">like</button>
+      </div>
+      <div>
+        <button id = "login" onclick="location.href='login.html'"><img src="">login</button>
+        <!-- <button id = "logout" onclick="location.href='index.html'"><img src="">logout</button> -->
+      </div>
+    </div>
+
+	<p>請輸入地點、時間、連絡電話</p>
+    <textarea name="" id=""></textarea>
+    <button>發佈</button>
+    <ul>
+
+    </ul>
+    <script>
+        // 點擊發布，會把文本域中的內容發佈到ul中
+        // 1.獲取事件源 文本域 按鈕 文本域
+        var text = document.querySelector('textarea');
+        var btn = document.querySelector('button');
+        var ul = document.querySelector('ul');
+        // 2.註冊點擊事件
+        
+        btn.onclick = function () {
+            // 首先會創建一個li  並把文本域的內容給li 再把li添加到ul中
+            var li = document.createElement('li');
+            if (text.value == '') {
+                alert('您沒有輸入內容')
+            } else {
+                // 文本域的值 value
+
+                var good = '<a readonly id="good">0</a>';
+                li.innerHTML = text.value+ good+ '<input style="float:right;background-color: #DDDDFF;"  type="submit" value="我要加1" onclick="numAdd()"/> ';
+                ul.insertBefore(li, ul.children[0]); // 把最新的發佈放到最前面
+                
+            }
+        }
+        
+    </script>
+    <script>
+    function numAdd() {
+      var num = document.getElementById('good');
+      num.innerHTML++;
+    }
+    </script>
+</body>
+
+</html>

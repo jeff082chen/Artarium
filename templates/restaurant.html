@@ -1,0 +1,77 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+{% block title %}restaurant{% endblock title %}
+
+{% block navigation %}
+    {{ super() }}
+{% endblock navigation %}
+
+{% block content %}
+<style>
+    #map {
+        height: 600px;
+        width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5Ym4KuHrxyNuIFQhpUZ7ZPO34-JgBAeY&callback=initMap"></script>
+<script>
+    function initMap() {
+        var uluru = {
+            lat: {{ latitude }},
+            lng: {{ longitude }}
+        };
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 16,
+            center: uluru
+        });
+        var marker = new google.maps.Marker({
+            position: uluru,
+            map: map
+        });
+
+        const icon = {
+            url: "{{ url_for('static', filename='img/marker.ico') }}",
+            scaledSize: new google.maps.Size(50, 50),
+            origin: new google.maps.Point(0, 0), // origin
+            anchor: new google.maps.Point(0, 0) // anchor
+        };
+
+        {% for restaurant in restaurants %}
+        var marker{{ restaurant['id'] }} = new google.maps.Marker({
+            position: {
+                lat: {{ restaurant['latitude'] }},
+                lng: {{ restaurant['longitude'] }}
+            },
+            map: map,
+            icon: icon,
+            clickable: true
+        });
+        {% endfor %}
+
+        // open a new window when click on the marker
+        {% for restaurant in restaurants %}
+        google.maps.event.addListener(marker{{ restaurant['id'] }}, 'click', function() {
+            window.open("https://www.google.com/maps?q={{ restaurant['latitude'] }},{{ restaurant['longitude'] }}");
+        });
+        {% endfor %}
+    }
+    window.initMap = initMap;
+</script>
+<h3>附近餐廳</h3>
+<a href="/info?UID={{ UID }}"><p>回活動頁面</p></a>
+<div id="map"></div>
+<!-- a list of all restaurants -->
+<ul>
+    {% for restaurant in restaurants %}
+    <li>
+        <p>{{ restaurant['name'] }}</p>
+        <p>{{ restaurant['city'] + restaurant['area'] + restaurant['address']}}</p>
+        <p>{{ restaurant['type'] }}</p>
+        <a href="https://www.google.com/maps?q={{ restaurant['latitude'] }},{{ restaurant['longitude'] }}"><p>Google Maps 連結</p></a>
+        <br>
+     </li>
+    {% endfor %}
+</ul>
+{% endblock content %}
