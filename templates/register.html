@@ -7,20 +7,27 @@
 {% endblock navigation %}
 
 {% block content %}
-    <div class="grid-container">
-        <div class="grid-item item1">
-            <form action="/register" method="post">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
-                </div>
+<br><br>
+<div class="card">
+    <div class="card-body">
+        <br>
+        <form action="/register" method="post">
+            <div class="form-input mb-3" style="text-align:center">
+                <span><i class="bi bi-envelope"></i></span>
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+            </div>
+            <div class="form-input mb-3" style="text-align:center">
+                <span><i class="bi bi-lock"></i></span>
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Enter password">
+            </div>
+            <br>
+            <div class="submit" style="text-align:center">
                 <div style="color:red;"> {{ errorMsg|safe }} </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
+                <button type="submit" class="btn btn-outline-warning button" style="width: 200px;">註冊</button>
+            </div>
+        </form>
     </div>
+</div>
 {% endblock content %}

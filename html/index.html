@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    <title>artarium</title>
+    <link href="styles\style.css" rel="stylesheet" type="text/css">
+    <script src="https://cdn.staticfile.org/jquery/2.0.0/jquery.min.js"></script>
+    
+    <!-- <script>
+      $(document).ready(function(){
+        $("#Greeting").click(function(){
+          var radioValue = $("input[name='ukus']:checked").val();
+           alert("Hi, "+$("#customname").val() +" from "+radioValue);
+        });
+      });
+
+      $(".slideshow").each(function () {
+    let slideImgs = $(this).find("img"),
+        slideImgsCount = slideImgs.length,
+        currentIndex = 0;
+
+    slideImgs.eq(currentIndex).fadeIn();
+
+    setInterval(showNextSlide, 5000);
+
+    function showNextSlide() {
+        let nextIndex = (currentIndex + 1) % slideImgsCount;
+        slideImgs.eq(currentIndex).fadeOut();
+        slideImgs.eq(nextIndex).fadeIn();
+        currentIndex = nextIndex;
+    }
+}); -->
+
+
+    </script>
+    
+  </head>
+
+  <body>
+    <div class = "title_button">
+      <div>  
+        <button id = "home" onclick="location.href='index.html'"><img src="">home</button>
+      </div>
+      <div>
+        <button id = "popular" onclick="location.href='popular.html'"><img src="">P</button>
+      </div> 
+      <div>
+        <button id = "like" onclick="location.href='like.html'"><img src="">like</button>
+      </div>
+      <div>
+        <button id = "login" onclick="location.href='login.html'"><img src="">login</button>
+        <!-- <button id = "logout" onclick="location.href='index.html'"><img src="">logout</button> -->
+      </div>
+    </div>
+
+    <div class = "title_bar">
+      <div>  
+        <button id = "Advanced_search" onclick="location.href='search.html'"><img src="">進階搜尋</button>
+      </div>
+      <div>
+        <button id = "random" onclick="location.href='info.html'"><img src="">抽</button>
+      </div> 
+      <div class="search">
+        <input id="search-bar" type="text" name="search" placeholder="輸入名稱">
+        <button id="search-btn"onclick="location.href='search.html'"></button>
+      </div>
+
+    </div>
+
+    <!-- <div class="search1">
+      <form method="get" action="">
+      <input id="search-bar1" type="text" class="" name="search" placeholder="搜索">
+      <input id="search-btn1" type="submit" class="" value="">
+      </form>
+    </div> -->
+
+    <div class=slide>
+      <div class="slideshow1">
+        <img class="recent" src="\image\wireframe.png" alt="image error1.1" >
+        <img class="recent" src="" alt="image error1.2" >
+        <img class="recent" src="" alt="image error1.3" >
+        <img class="recent" src="" alt="image error1.4" >
+        <img class="recent" src="" alt="image error1.5" >
+      </div>
+      <div class="slideshow2">
+        <img class="dance" src="" alt="image error2.1" >
+        <img class="dance" src="" alt="image error2.2" >
+        <img class="dance" src="" alt="image error2.3" >
+        <img class="dance" src="" alt="image error2.4" >
+        <img class="dance" src="" alt="image error2.5" >
+      </div>
+        <div class="slideshow3">
+        <img class="exhibition" src="" alt="image error3.1" >
+        <img class="exhibition" src="" alt="image error3.2" >
+        <img class="exhibition" src="" alt="image error3.3" >
+        <img class="exhibition" src="" alt="image error3.4" >
+        <img class="exhibition" src="" alt="image error3.5" >
+      </div>
+      <div class="slideshow4">
+        <img class="music" src="" alt="image error4.1" >
+        <img class="music" src="" alt="image error4.2" >
+        <img class="music" src="" alt="image error4.3" >
+        <img class="music" src="" alt="image error4.4" >
+        <img class="music" src="" alt="image error4.5" >
+      </div>
+      <div class="slideshow5">
+        <img class="drama" src="" alt="image error5.1" >
+        <img class="drama" src="" alt="image error5.2" >
+        <img class="drama" src="" alt="image error5.3" >
+        <img class="drama" src="" alt="image error5.4" >
+        <img class="drama" src="" alt="image error5.5" >
+      </div>   
+    </div>
+    
+
+    <!-- <p>123</p>
+
+    <div>
+      <label for="customname">Enter custom name:</label>
+      <input id="customname" type="text" placeholder="">
+    </div>
+    
+    <div>
+      <label for="us">US</label><input id="us" type="radio" name="ukus" value="us" checked>
+      <label for="uk">UK</label><input id="uk" type="radio" name="ukus" value="uk">
+    </div>
+    
+    <div>
+      <button id="Greeting">Greeting</button>
+    </div> -->
+    
+  </body>
+  <script>
+    var myIndex_1 = 0;
+    var myIndex_2 = 0;
+    var myIndex_3 = 0;
+    var myIndex_4 = 0;
+    var myIndex_5 = 0;
+    carousel();
+    function carousel() {
+        var x_1 = document.getElementsByClassName("recent");
+        var x_2 = document.getElementsByClassName("dance");
+        var x_3 = document.getElementsByClassName("exhibition");
+        var x_4 = document.getElementsByClassName("music");
+        var x_5 = document.getElementsByClassName("drama");
+        for (var i = 0; i < x_1.length; i++) {
+          x_1[i].style.display = "none";
+        }
+        for (i = 0; i < x_2.length; i++) {
+          x_2[i].style.display = "none";
+        }
+        for (i = 0; i < x_3.length; i++) {
+          x_3[i].style.display = "none";
+        }
+        for (i = 0; i < x_4.length; i++) {
+          x_4[i].style.display = "none";
+        }
+        for (i = 0; i < x_5.length; i++) {
+          x_5[i].style.display = "none";
+        }
+        myIndex_1++;
+        myIndex_2++;
+        myIndex_3++;
+        myIndex_4++;
+        myIndex_5++;
+        if (myIndex_1 > x_1.length) {myIndex_1 = 1}   
+        x_1[myIndex_1-1].style.display = "block";
+        if (myIndex_2 > x_2.length) {myIndex_2 = 1}
+        x_2[myIndex_2-1].style.display = "block";
+        if (myIndex_3 > x_3.length) {myIndex_3 = 1}
+        x_3[myIndex_3-1].style.display = "block";
+        if (myIndex_4 > x_4.length) {myIndex_4 = 1}
+        x_4[myIndex_4-1].style.display = "block";
+        if (myIndex_5 > x_5.length) {myIndex_5 = 1} 
+        x_5[myIndex_5-1].style.display = "block";  
+        setTimeout(carousel, 2000);
+    }
+  </script>
+</html>

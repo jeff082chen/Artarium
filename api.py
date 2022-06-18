@@ -25,7 +25,7 @@ category_int = {
     '展覽' : 6 
 }
 
-weather = {
+weather_dict = {
     "宜蘭縣": "F-D0047-003", 
     "桃園市": "F-D0047-007", 
     "新竹縣": "F-D0047-011",
@@ -228,7 +228,7 @@ def get_weather(longitude, latitude, db = db):
             "Authorization": "CWB-E4C5EEEE-2ACE-473C-AD41-FC89855FBAD2",
             "locationName": area
         }
-        r = requests.get(f"https://opendata.cwb.gov.tw/api/v1/rest/datastore/{weather[city]}", params=params)
+        r = requests.get(f"https://opendata.cwb.gov.tw/api/v1/rest/datastore/{weather_dict[city]}", params=params)
         weather_data = json.loads(r.text)
         weather_data = weather_data["records"]["locations"][0]["location"][0]["weatherElement"]
         weather_info = []

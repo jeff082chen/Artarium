@@ -59,19 +59,29 @@
     }
     window.initMap = initMap;
 </script>
-<h3>附近餐廳</h3>
-<a href="/info?UID={{ UID }}"><p>回活動頁面</p></a>
+<br><br>
+<a href="/info?UID={{ UID }}" style="color: rgba(68, 43, 104, 0.8);"><h3>回活動頁面</h3></a>
 <div id="map"></div>
-<!-- a list of all restaurants -->
-<ul>
-    {% for restaurant in restaurants %}
-    <li>
-        <p>{{ restaurant['name'] }}</p>
-        <p>{{ restaurant['city'] + restaurant['area'] + restaurant['address']}}</p>
-        <p>{{ restaurant['type'] }}</p>
-        <a href="https://www.google.com/maps?q={{ restaurant['latitude'] }},{{ restaurant['longitude'] }}"><p>Google Maps 連結</p></a>
-        <br>
-     </li>
-    {% endfor %}
-</ul>
+<br><br>
+<!-- a table of all restaurants -->
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>餐廳名稱</th>
+            <th>餐廳地址</th>
+            <th>餐廳類型</th>
+            <th>Google Maps</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for restaurant in restaurants %}
+        <tr>
+            <td>{{ restaurant['name'] }}</td>
+            <td>{{ restaurant['city'] + restaurant['area'] + restaurant['address']}}</td>
+            <td>{{ restaurant['type'] }}</td>
+            <td><a href="https://www.google.com/maps?q={{ restaurant['latitude'] }},{{ restaurant['longitude'] }}">Go</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock content %}

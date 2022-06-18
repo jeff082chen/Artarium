@@ -7,63 +7,46 @@
 {% endblock navigation %}
 
 {% block content %}
-<div class="title_bar">
-  <div>
-      <button id="random" onclick="location.href='/lucky'"><img src="">抽</button>
-  </div>
-  <form id="form1" name="form1" action="{{ url_for('search') }}">
-    <p>
-      <input name="title" type="text" id="title"/>
-    </p>
-    <p>
-      <input type="radio" name="category" id="radio" value="舞蹈" />舞蹈
-      <input type="radio" name="category" id="radio1" value="展覽" />展覽
-      <input type="radio" name="category" id="radio2" value="音樂" />音樂
-      <input type="radio" name="category" id="radio3" value="戲劇" />戲劇
-      <input type="radio" name="category" id="radio4" value="全部" checked="checked" />全部
-    </p>
-    <p>縣市選擇:
-      <input list="browsers" name="city" >
-      <datalist id="browsers">
-        <option value="臺北市">
-        <option value="新北市">
-        <option value="基隆市">
-        <option value="桃園縣">
-        <option value="新竹市">
-        <option value="新竹縣">
-        <option value="苗栗縣">
-        <option value="臺中市">
-        <option value="彰化縣">
-        <option value="南投縣">
-        <option value="雲林縣">
-        <option value="嘉義市">
-        <option value="嘉義縣">
-        <option value="臺南市">
-        <option value="高雄市">
-        <option value="屏東縣">
-        <option value="臺東縣">
-        <option value="花蓮縣">
-        <option value="宜蘭縣">
-        <option value="澎湖縣">
-        <option value="金門縣">
-        <option value="連江縣">
-      </datalist>
-    </p>
-    <p>
-      <input id="date" type="date" name="date" />
-    </p>
-    <p>
-      <button type="submit" class="btn btn-block" >Search</button>
-    </p>
-  </form>
+<br><br>
+<div class="search">
+    <div class="card-body">
+        <br>
+        <div class="title_bar">
+          <form id="form1" name="form1" action="{{ url_for('search') }}">
+            <p><input name="title" type="text" id="title" placeholder="Search..."/></p>
+            <br>
+            <p>
+              <input type="radio" name="category" id="radio" value="舞蹈" />舞蹈
+              <input type="radio" name="category" id="radio1" value="展覽" />展覽
+              <input type="radio" name="category" id="radio2" value="音樂" />音樂
+              <input type="radio" name="category" id="radio3" value="戲劇" />戲劇
+              <input type="radio" name="category" id="radio4" value="全部" checked="checked" />全部
+            </p>
+            <p>縣市選擇:
+              <input list="browsers" name="city" >
+              <datalist id="browsers">
+                {% for city in cities %}
+                  <option value="{{ city }}">
+                {% endfor %}
+              </datalist>
+            </p>
+            <p>
+              <input id="date" type="date" name="date" />
+            </p>
+            <div style="text-align:center">
+              <button type="submit" class="btn btn-outline-dark button" style="width: 100px;">Search</button>
+            </div>
+          </form>
+        </div>
+        <br>
+          <div style="text-align:center">
+            <button id="random" onclick="location.href='/lucky'" class="btn btn-outline-dark button" style="width: 100px;">好手氣</button>
+          </div>
+        </div>
+    </div>
 </div>
 
-<!-- <div class="search1">
-<form method="get" action="">
-<input id="search-bar1" type="text" class="" name="search" placeholder="搜索">
-<input id="search-btn1" type="submit" class="" value="">
-</form>
-</div> -->
+<br><br>
 
 <div class=slide>
   <div class="slideshow1">

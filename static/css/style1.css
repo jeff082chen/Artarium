@@ -1,0 +1,176 @@
+.title_button{
+  display:inline-block;
+  /* padding-bottom: 40px; */
+  font-size:20px;
+  display: flex;
+  align-items: flex-start;
+}
+#home {
+  width: 100px;
+  height: 60px;
+  margin-left: 1000px;
+  margin-right: 10px;
+}
+#popular {
+  width: 100px;
+  height: 60px;
+  margin-right: 10px;
+}
+#like {
+  width: 100px;
+  height: 60px;
+  margin-right: 10px;
+}
+#login {
+  width: 100px;
+  height: 60px;
+  
+}
+.title_bar{
+  display:inline-block;
+  display: flex; 
+  align-items: stretch;
+  margin:10px 10px 0px 100px;
+  height: auto;
+}
+
+.search{
+  height: auto;
+}
+
+#Advanced_search {
+  width: 200px;
+  height: 126px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 40px; 
+}
+
+#random{
+  width:250px;
+  height: 126px;
+  flex-basis: 48%;
+  margin-right: 10px;
+  font-size: 20px; 
+}
+
+/* input[type="text"] {
+  color: blue;
+  font-size:50px;
+} */
+
+#search-bar{
+  width: 100%;
+  height: 120px;
+  font-size: 20px;
+}
+
+#search-btn{
+  width:120px;
+  height: 126px;
+  cursor: pointer; 
+  position: absolute;
+  top: 78px;
+  right: 544px;
+}
+
+.slide img{
+  width:1000px;
+  height:300px;
+  margin: 10px auto;
+
+}
+
+h3 {
+  display:inline-block;
+}
+
+ul {
+  margin:0;
+  padding:0;
+}
+
+
+*{
+  font-family:微軟正黑體;  
+}
+
+body{
+  background-color: white;
+}
+
+#username, #password, h3, #fullname, #comfirm_password,#username2, #password2{
+  width: 200px;
+  height: 20px;
+  margin: 10px;
+  color: #df5334;
+}
+
+h5{
+  margin: 20px;
+  color: #a3a2a3;
+}
+
+h5:hover{
+  color: black;
+}
+
+#container1, #container2{
+  margin: 50px;
+  padding: 10px;
+  width: 230px;
+  height: 300px;
+  background-color: white;
+  border-radius: 5px;
+  border-top: 10px solid #df5334;
+  box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
+  
+  /*定位對齊*/
+  position:relative;   
+  margin: auto;
+  top: 100px;
+  text-align:center;  
+}
+
+.system_name{
+  /*定位對齊*/
+  position:relative;   
+  margin: auto;
+  top: 100px;
+  text-align:center; 
+}
+
+.submit{
+  color: white;  
+  background: #df5334;
+  width: 200px;
+  height: 30px;
+  margin: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 0px;
+}
+
+.submit:hover{
+  background: #db6937;
+}
+
+#container2{
+  visibility: hidden;   /*剛開始消失*/
+  height: 350px;
+}
+
+
+#copyright{
+  text-align: center;
+  color: #a3a2a3;
+  margin: -200px 0px 0px 0px;
+  font-size: 14px;
+}
+
+input{
+  padding: 5px;
+  border: none; 
+  border:solid 1px #ccc;
+  border-radius: 5px;
+}

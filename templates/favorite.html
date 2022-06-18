@@ -8,15 +8,16 @@
 
 {% block content %}
 <!-- unordered list -->
+<br><br>
 <div class="grid-container">
     <div class="grid-item item1">
-        <ul>
+        <ul style="font-size: 1.5rem; line-height: 50px;">
             {% if not shows %}
                 <li>No shows in your favorite list</li>
             {% else %}
                 {% for show in shows %}
                     <li>
-                        <a href="/info?UID={{ show['UID'] }}">{{ show['title'] }}</a>
+                        <a href="/info?UID={{ show['UID'] }}" style="color: rgba(68, 43, 104, 0.8);">{{ show['title'] }}</a>
                     </li>
                 {% endfor %}
             {% endif %}

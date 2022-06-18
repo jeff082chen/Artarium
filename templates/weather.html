@@ -7,10 +7,11 @@
 {% endblock navigation %} 
 
 {% block content %}
-<a href="/info?UID={{ UID }}"><p>回活動頁面</p></a>
-<div class="grid-item item3"><h2>未來一週的當地天氣</h2></div>
+<br><br>
+<a href="/info?UID={{ UID }}" style="color: rgba(68, 43, 104, 0.8);"><h3>回活動頁面</h3></a>
+<br><br>
 {% if weather_info %}
-<table class="grid-item item6">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>from</th>
@@ -31,6 +32,13 @@
     </tbody>
 </table>
 {% else %}
-<p>沒有資料</p>
+<div class="container px-4 px-lg-5 h-100">
+    <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+        <div class="col-lg-8 align-self-md-center">
+            <h1 class="font-weight-bold">沒有資料</h1>
+            <hr class="divider" />
+        </div>
+    </div>
+</div>
 {% endif %}
 {% endblock content %}

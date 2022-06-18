@@ -72,7 +72,8 @@ def request_loader(request):
 def index():
     db = get_db()
     slide = get_slides(db = db)
-    return render_template('index.html', slide = slide)
+    cities = list(weather_dict.keys())
+    return render_template('index.html', slide = slide, cities = cities)
 
 @app.route('/info')
 def info():

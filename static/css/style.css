@@ -1,176 +1,85 @@
-.title_button{
-  display:inline-block;
-  /* padding-bottom: 40px; */
-  font-size:20px;
-  display: flex;
-  align-items: flex-start;
-}
-#home {
-  width: 100px;
-  height: 60px;
-  margin-left: 1000px;
-  margin-right: 10px;
-}
-#popular {
-  width: 100px;
-  height: 60px;
-  margin-right: 10px;
-}
-#like {
-  width: 100px;
-  height: 60px;
-  margin-right: 10px;
-}
-#login {
-  width: 100px;
-  height: 60px;
-  
-}
-.title_bar{
-  display:inline-block;
-  display: flex; 
-  align-items: stretch;
-  margin:10px 10px 0px 100px;
-  height: auto;
+
+body {
+    background-color: WhiteSmoke;
 }
 
-.search{
-  height: auto;
+.card {
+    vertical-align: middle;
+    border-style: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 480px;
+    margin: auto;
+    font-family: arial;
 }
 
-#Advanced_search {
-  width: 200px;
-  height: 126px;
-  margin-left: 10px;
-  margin-right: 10px;
-  font-size: 40px; 
+.search {
+    background-color: Gainsboro;
+    vertical-align: middle;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 12px;
+    border-color: #ccc;
+    max-width: 500px;
+    margin: auto;
+    font-family: arial;
 }
 
-#random{
-  width:250px;
-  height: 126px;
-  flex-basis: 48%;
-  margin-right: 10px;
-  font-size: 20px; 
+input {
+    padding: 5px;
+    border: none; 
+    border:solid 1px #ccc;
+    border-radius: 5px;
 }
 
-/* input[type="text"] {
-  color: blue;
-  font-size:50px;
-} */
-
-#search-bar{
-  width: 100%;
-  height: 120px;
-  font-size: 20px;
+input#title {
+    width: 100%;
+    border-radius: 5px;
+    border: solid 1px #ccc;
+    padding: 5px;
 }
 
-#search-btn{
-  width:120px;
-  height: 126px;
-  cursor: pointer; 
-  position: absolute;
-  top: 78px;
-  right: 544px;
+#mainNav .navbar-nav .nav-item .nav-link {
+    color: #6c757d;
+    font-family: "Merriweather Sans", "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.75rem 0;
 }
 
-.slide img{
-  width:1000px;
-  height:300px;
-  margin: 10px auto;
-
+#mainNav {
+    /* box-shadow: none; */
+    background-color: rgba(68, 43, 104, 0.8);
 }
 
-h3 {
-  display:inline-block;
+#mainNav .navbar-nav .nav-item .nav-link:hover,
+#mainNav .navbar-nav .nav-item .nav-link:active {
+    color: cornsilk;
 }
 
-ul {
-  margin:0;
-  padding:0;
+#mainNav .navbar-nav .nav-item .nav-link.active {
+    color: cornsilk !important;
 }
 
-
-*{
-  font-family:微軟正黑體;  
+#mainNav .navbar-brand {
+    color: black;
 }
 
-body{
-  background-color: white;
+#mainNav .navbar-brand:hover {
+    color: black;
 }
 
-#username, #password, h3, #fullname, #comfirm_password,#username2, #password2{
-  width: 200px;
-  height: 20px;
-  margin: 10px;
-  color: #df5334;
+#mainNav .navbar-nav .nav-item .nav-link {
+    color: rgba(2, 1, 1, 0.7);
+    padding: 0 1rem;
+    font-size: 1.2rem;
 }
 
-h5{
-  margin: 20px;
-  color: #a3a2a3;
+#mainNav .navbar-nav .nav-item:last-child .nav-link {
+    padding-right: 0;
 }
 
-h5:hover{
-  color: black;
-}
-
-#container1, #container2{
-  margin: 50px;
-  padding: 10px;
-  width: 230px;
-  height: 300px;
-  background-color: white;
-  border-radius: 5px;
-  border-top: 10px solid #df5334;
-  box-shadow: 0 0px 70px rgba(0, 0, 0, 0.1);
-  
-  /*定位對齊*/
-  position:relative;   
-  margin: auto;
-  top: 100px;
-  text-align:center;  
-}
-
-.system_name{
-  /*定位對齊*/
-  position:relative;   
-  margin: auto;
-  top: 100px;
-  text-align:center; 
-}
-
-.submit{
-  color: white;  
-  background: #df5334;
-  width: 200px;
-  height: 30px;
-  margin: 10px;
-  padding: 5px;
-  border-radius: 5px;
-  border: 0px;
-}
-
-.submit:hover{
-  background: #db6937;
-}
-
-#container2{
-  visibility: hidden;   /*剛開始消失*/
-  height: 350px;
-}
-
-
-#copyright{
-  text-align: center;
-  color: #a3a2a3;
-  margin: -200px 0px 0px 0px;
-  font-size: 14px;
-}
-
-input{
-  padding: 5px;
-  border: none; 
-  border:solid 1px #ccc;
-  border-radius: 5px;
+.slide img {
+    width:1000px;
+    height:300px;
+    margin: 10px auto;
 }
