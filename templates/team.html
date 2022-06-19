@@ -19,6 +19,7 @@
             <th>集合地點</th>
             <th>聯絡方式</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +29,9 @@
                 <td>{{ team['member_id'] }}</td>
                 <td>{{ team['place'] }}</td>
                 <td>{{ team['contact'] }}</td>
+                {% if current_user.is_authenticated %}
+                    <td><button id="random" onclick="location.href='/join?UID={{ UID }}&id={{ team['member_id'] }}'" class="btn btn-outline-primary button" style="width: 120px;">我要參加！</button></td>
+                {% endif %}
                 {% if current_user.id == team['member_id'] %}
                     <td><a href="/delete_team?UID={{ UID }}&team_id={{ team['id'] }}">刪除</a></td>
                 {% else %}
@@ -42,23 +46,21 @@
 {% endif %}
 <br><br>
 {% if current_user.is_authenticated %}
-        <div class="grid-item item5">
-            <div style="background-color:lightpink;width: 600px;max-width:100%;height: 130px;overflow: scroll;">
-                <div id="messageBox"></div>
-                <div class="border">
-                    <p>發起揪團</p>
-                    <form action="/team" method="post">
-                        <input type="hidden" name="UID" value="{{ UID }}">
-                        <!-- input contact -->
-                        <input type="text" name="contact" placeholder="聯絡方式">
-                        <!-- input place -->
-                        <input type="text" name="place" placeholder="集合地點">
-                        <div style="color:red;"> {{ errorMsg|safe }} </div>
-                        <input type="submit" value="送出">
-                    </form>
-                </div>
-            </div>
-        </div>
+<div style="padding-left: 80px;">
+    <div class="message">
+        <p>發起揪團</p>
+        <form action="/team" method="post">
+            <input type="hidden" name="UID" value="{{ UID }}">
+                <!-- input contact -->
+            <input type="text" name="contact" placeholder="聯絡方式">
+            <!-- input place -->
+            <input type="text" name="place" placeholder="集合地點">
+            <br><br>
+            <div style="color:red;"> {{ errorMsg|safe }} </div>
+            <input type="submit" value="送出">
+        </form>
+    </div>
+</div>
 {% endif %}
 
 {% endblock content %}

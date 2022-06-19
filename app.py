@@ -2,7 +2,11 @@ import os
 from flask import *
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 import pymysql
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from api import *
+from send_email import main
 
 app = Flask(__name__)
 app.secret_key = os.urandom(16).hex()
@@ -98,11 +102,11 @@ def login():
     )
     password = cur.fetchone()
     if not password:
-        errorMsg='<span style="color:#35858B">__</span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>您輸入的帳號不存在'
+        errorMsg='<span style="color:#35858B"></span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>您輸入的帳號不存在'
         return render_template('login.html', errorMsg = errorMsg)
     password = password[0]
     if user_password != password:
-        errorMsg='<span style="color:#35858B">__</span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>您輸入的帳號或密碼有誤'
+        errorMsg='<span style="color:#35858B"></span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>您輸入的帳號或密碼有誤'
         return render_template('login.html', errorMsg = errorMsg)
     user = User()
     user.id = user_id
@@ -127,7 +131,7 @@ def register():
         'SELECT member_id FROM members WHERE member_id = %s', (user_id, )
     )
     if cur.fetchone() is not None:
-        errorMsg='<span style="color:#35858B">__</span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>您輸入的帳號已存在'
+        errorMsg='<span style="color:#35858B"></span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>您輸入的帳號已存在'
         return render_template('register.html', errorMsg = errorMsg)
     cur.execute(
         'INSERT INTO members (member_id, password) VALUES (%s, %s)', (user_id, user_password)
@@ -250,6 +254,46 @@ def weather():
     db = get_db()
     weather_info = get_weather(longitude, latitude, db = db)
     return render_template('weather.html', weather_info = weather_info, UID = UID)
+
+@app.route('/join')
+@login_required
+def join():
+    user_id = current_user.id
+    UID = request.args.get('UID')
+    member_id = request.args.get('id')
+    db = get_db()
+    cur = db.cursor()
+    cur.execute(
+        'SELECT title FROM activities WHERE UID = %s', (UID, )
+    )
+    title = cur.fetchone()[0]
+    content = MIMEMultipart()  #建立MIMEMultipart物件
+    content["subject"] = f"你在 Artarium 發起的揪團活動有人想要參與！"  #郵件標題
+    content["from"] = "artarium0000@gmail.com"  #寄件者
+    content["to"] = f"{member_id}@gmail.com" #收件者
+    content.attach(MIMEText(f"{user_id} 想要參與你在\n\n{title}\n\n發起的揪團活動！"))  #郵件內容
+
+    with smtplib.SMTP(host="smtp.gmail.com", port="587") as smtp:  # 設定SMTP伺服器
+        try:
+            smtp.ehlo()  # 驗證SMTP伺服器
+            smtp.starttls()  # 建立加密傳輸
+            smtp.login("artarium0000@gmail.com", "qwcmzdsooaygmoac")  # 登入寄件者gmail
+            smtp.send_message(content)  # 寄送郵件
+            print("Complete!")
+        except Exception as e:
+            print("Error message: ", e)
+
+    return redirect("/team?UID=" + UID)
+
+@app.route('/send')
+@login_required
+def send():
+    user_id = current_user.id
+    UID = request.args.get('UID')
+    db = get_db()
+    main(user_id, db = db)
+    return redirect("/favorite")
+
 
 @app.errorhandler(404)
 def not_found(e):
