@@ -146,7 +146,7 @@ def get_search(title, category, city, date, db = db):
         execute_str += f' AND title LIKE "%{title}%"'
     if category != "全部":
         execute_str += f' AND category = {category_int[category]}'
-    if date is not "":
+    if date == "":
         execute_str += f' AND startDate <= "{date}" AND endDate >= "{date}"'
     print(execute_str)
     cur.execute(
@@ -154,7 +154,7 @@ def get_search(title, category, city, date, db = db):
     )
     res = [row[0] for row in cur.fetchall()]
     res2 = []
-    if city is not "":
+    if city == "":
         for UID in res:
             cur.execute(
                 'SELECT location FROM shows WHERE UID = %s', (UID, )

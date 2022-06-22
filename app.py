@@ -1,4 +1,5 @@
 import os
+import hashlib
 from flask import *
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 import pymysql
@@ -17,6 +18,8 @@ login_manager.init_app(app)
 login_manager.session_protection = "strong"
 login_manager.login_view = 'login'
 login_manager.login_message = 'Please Login'
+
+salt = "artarium"
 
 def get_db():
     db = getattr(g, '_database', None)
@@ -68,7 +71,10 @@ def request_loader(request):
     user.id = user_id
     # DO NOT ever store passwords in plaintext and always compare password
     # hashes using constant-time comparison!
-    if request.form.get('password') == password[0]:
+    user_password = request.form.get('password')
+    user_password += salt
+    user_password = hashlib.sha256(user_password.encode()).hexdigest()[:20]
+    if user_password == password[0]:
         user.is_authenticated = True
     return user
 
@@ -96,6 +102,8 @@ def login():
         return render_template("login.html", next = request.args.get("next"))
     user_id = request.form['username']
     user_password = request.form['password']
+    user_password += salt
+    user_password = hashlib.sha256(user_password.encode()).hexdigest()[:20]
     db = get_db()
     cur = db.cursor()
     cur.execute(
@@ -122,10 +130,15 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     if request.method == 'GET':
         return render_template('register.html')
     user_id = request.form['username']
     user_password = request.form['password']
+    if user_id == "" or user_password == "":
+        errorMsg='<span style="color:#35858B"></span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>帳號／密碼不得為空'
+        return render_template('register.html', errorMsg = errorMsg)
     db = get_db()
     cur = db.cursor()
     cur.execute(
@@ -134,6 +147,8 @@ def register():
     if cur.fetchone() is not None:
         errorMsg='<span style="color:#35858B"></span><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>您輸入的帳號已存在'
         return render_template('register.html', errorMsg = errorMsg)
+    user_password += salt
+    user_password = hashlib.sha256(user_password.encode()).hexdigest()[:20]
     cur.execute(
         'INSERT INTO members (member_id, password) VALUES (%s, %s)', (user_id, user_password)
     )
