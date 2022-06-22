@@ -12,7 +12,7 @@
 <div class="card">
     <div class="card-body">
         <br>
-        <form action="/login" method="post">
+        <form action="{{ url_for('login', next=next) }}" method="post">
             <div class="form-input mb-3" style="text-align:center">
                 <span><i class="bi bi-envelope"></i></span>
                 <label for="username">Username</label>

@@ -90,9 +90,10 @@ def info():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    next = request.args.get('next', None)
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
     if request.method == 'GET':
-        return render_template("login.html", next = next)
+        return render_template("login.html", next = request.args.get("next"))
     user_id = request.form['username']
     user_password = request.form['password']
     db = get_db()
@@ -111,13 +112,13 @@ def login():
     user = User()
     user.id = user_id
     login_user(user)
-    return redirect(next or url_for('index'))
+    return redirect(request.args.get("next") or url_for('index'))
 
 @app.route('/logout')
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('index'))
+    return redirect(request.args.get("next") or url_for('index'))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

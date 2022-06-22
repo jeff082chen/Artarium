@@ -75,6 +75,6 @@
     {% endfor %}
   </div>
 </div>
-
-<script src="{{ url_for('static', filename='js/slides.js') }}"></script>
 {% endblock content %}
+
+{% block script %}<script src="{{ url_for('static', filename='js/slides.js') }}"></script>{% endblock script %}

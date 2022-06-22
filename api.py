@@ -71,7 +71,7 @@ def get_slides(db = db):
     )
     slide['exhibition'] = [{'imgUrl': res[0], 'UID': res[1]} for res in cur.fetchall()]
     cur.execute(
-        'SELECT imageUrl, UID FROM activities WHERE imageUrl IS NOT NULL LIMIT 5'
+        'SELECT imageUrl, UID FROM activities WHERE imageUrl IS NOT NULL ORDER BY RAND() LIMIT 5'
     )
     slide['all'] = [{'imgUrl': res[0], 'UID': res[1]} for res in cur.fetchall()]
     return slide
